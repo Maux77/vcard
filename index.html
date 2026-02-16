@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vCard - Maurizio Gnazzo</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            background: white;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .title {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 18px;
+        }
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+        .btn:active {
+            transform: translateY(0);
+        }
+        .info {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #666;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Maurizio Gnazzo</h1>
+        <p class="title">Broker & CEO - RCPolizza.it</p>
+        <button class="btn" onclick="downloadVCard()">Aggiungi ai Contatti</button>
+        <div class="info">
+            <p>Clicca il pulsante per scariccare la vCard e aggiungerla ai tuoi contatti</p>
+        </div>
+    </div>
+
+    <script>
+        function downloadVCard() {
+            const vcardContent = `BEGIN:VCARD
+VERSION:3.0
+FN:Maurizio Gnazzo
+N:Gnazzo;Maurizio;;;
+ORG:RCPolizza.it
+TITLE:Broker & CEO
+TEL;TYPE=WORK,VOICE:09711680036
+TEL;TYPE=CELL,VOICE:+393283346188
+URL;TYPE=Sito:https://www.rcpolizza.it/
+URL;TYPE=Linkedin:https://www.linkedin.com/in/maurizio-gnazzo-01b64465/
+URL;TYPE=Facebook:https://www.facebook.com/rcpolizza/
+NOTE:Broker & CEO presso RCPolizza.it
+REV:2026-02-16T13:06:00Z
+END:VCARD`;
+            
+            const blob = new Blob([vcardContent], { type: 'text/vcard; charset=utf-8' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'Maurizio_Gnazzo_RCPolizza.it.vcf';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    </script>
+</body>
+</html>
