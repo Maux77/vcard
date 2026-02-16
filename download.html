@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Scarica Contatto</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<script>
+fetch('https://raw.githubusercontent.com/Maux77/vcard/main/Maurizio_Gnazzo_RCPolizza.it.vcf')
+  .then(r => r.text())
+  .then(data => {
+    const blob = new Blob([data], { type: 'text/vcard; charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'Maurizio_Gnazzo_RCPolizza.it.vcf';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(() => window.close(), 1000);
+  })
+  .catch(err => {
+    document.body.innerHTML = '<p>Errore nel caricamento della vCard. <a href="Maurizio_Gnazzo_RCPolizza.it.vcf">Clicca qui per scaricarla</a></p>';
+  });
+</script>
+<noscript>
+  <p>JavaScript è disabilitato. <a href="Maurizio_Gnazzo_RCPolizza.it.vcf">Clicca qui per scaricare il contatto</a></p>
+</noscript>
+</body>
+</html>
